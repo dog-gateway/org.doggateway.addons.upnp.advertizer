@@ -58,7 +58,7 @@ public class DogUPNPDevice implements UPnPDevice
 
 	// the Dictionary containing the properties used to describe the device in
 	// UPnP
-	private Dictionary<String, Object> descriptions;
+	private Dictionary<String, String> descriptions;
 
 	// the unique device udn, shall be consistent across different runs
 	private String deviceId;
@@ -96,7 +96,7 @@ public class DogUPNPDevice implements UPnPDevice
 		}
 
 		// Prepare the descriptions dictionary
-		this.descriptions = new Hashtable<String, Object>();
+		this.descriptions = new Hashtable<String, String>();
 
 		// flag the service to be exported as UPnP device
 		this.descriptions.put(UPnPDevice.UPNP_EXPORT, "");
@@ -104,7 +104,7 @@ public class DogUPNPDevice implements UPnPDevice
 		// set the device category to match the UPnP device category as per the
 		// OSGi specification
 		this.descriptions.put(org.osgi.service.device.Constants.DEVICE_CATEGORY,
-				new String[] { UPnPDevice.DEVICE_CATEGORY });
+				UPnPDevice.DEVICE_CATEGORY);
 
 		// add the friendly name of this device
 		this.descriptions.put(UPnPDevice.FRIENDLY_NAME,
@@ -168,7 +168,7 @@ public class DogUPNPDevice implements UPnPDevice
 	}
 
 	@Override
-	public Dictionary<String, Object> getDescriptions(String locale)
+	public Dictionary<String, String> getDescriptions(String locale)
 	{
 		// return the descriptions of this device characteristics localized
 		// according to the given locale.
